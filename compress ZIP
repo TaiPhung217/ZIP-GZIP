@@ -1,6 +1,7 @@
 from zipfile import ZipFile
 import os
 
+#hàm lấy tất cả các file trong thư mục cần nén
 def get_all_file_paths(directory):
     file_paths = []
     for root, directories, files in os.walk(directory):
@@ -10,14 +11,11 @@ def get_all_file_paths(directory):
     return file_paths
 
 def main():
-    directory = './text'
+    directory = './text'      #tệp chứa các file cần nén
     file_paths = get_all_file_paths(directory)
 
-    for file_name in file_paths:
-        print(file_name)
-
     with ZipFile('my_file.zip','w') as zip:
-        for file in file_paths:
+        for file in file_paths:    #duyệt từng file trong thư mục rồi viết vào thư mục zip
             zip.write(file)
     print('Done')
 
